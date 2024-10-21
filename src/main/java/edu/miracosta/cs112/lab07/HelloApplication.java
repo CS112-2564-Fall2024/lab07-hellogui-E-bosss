@@ -12,10 +12,22 @@ import javafx.event.ActionEvent;        //class for type of event for action (li
 public class HelloApplication extends Application  { //inheriting core functionality + this class will handle events
     /*** GUI COMPONENTS ***/
     // TODO: follow step 25 in README.md to create reference variables
+    Stage primaryStage = new Stage();
 
     /*** DRIVER main ***/
     public static void main(String[] args) {
         launch(args); //method from Application class, must be called to setup javafx application
+
+        public void start(Stage primaryStage) {
+            primaryStage = setTitle("Hello GUI: Ethan Senger");
+
+            stackPane layout = new stackPane();
+
+            Scene scene = new Scene(layout, 400, 400);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+
     }
 
     // TODO: follow steps 2-9 in README.md to create a start method
