@@ -1,6 +1,10 @@
 package edu.miracosta.cs112.lab07;//package name here depending on your IDE
 
 import javafx.application.Application;  //abstract class used for JavaFX GUI's
+import javafx.geometry.Insets;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;              //class for GUI window
 import javafx.scene.Scene;              //class for specific view in GUI window
 import javafx.scene.layout.VBox;        //class for layout pane, organized top-to-bottom
@@ -19,9 +23,46 @@ public class HelloApplication extends Application { //inheriting core functional
     }
 
     public void start(Stage primaryStage) {
-        primaryStage = setTitle("Hello GUI: Ethan Senger");
+        primaryStage.setTitle("Hello GUI: Ethan Senger");
+
+        Label label1 = new Label();
+        label1.setText("Hello GUI World");
+
+        Label label2 = new Label();
+        label2.setText("Thanks for visiting");
+
+        AnchorPane anchorPane = new AnchorPane();
+
+        Button buttonSave = new Button("Save");
+        Button buttonCancel = new Button("Cancel");
+
+        HBox hb1 = new HBox();
+        hb1.setPadding(new Insets(0, 10, 10, 10));
+        hb1.setSpacing(10);
+        hb1.getChildren().add(buttonSave);
+
+        HBox hb2 = new HBox();
+        hb2.setPadding(new Insets(0, 10, 10, 10));
+        hb2.setSpacing(10);
+        hb2.getChildren().add(buttonCancel);
+
+        anchorPane.getChildren().addAll(label1, label2, hb1,hb2);
+
+        AnchorPane.setTopAnchor(label1, 0.0);
+        AnchorPane.setLeftAnchor(label1, 0.0);
+
+        AnchorPane.setTopAnchor(label2, 0.0);
+        AnchorPane.setRightAnchor(label2, 0.0);
+
+        AnchorPane.setBottomAnchor(hb2, 8.0);
+        AnchorPane.setLeftAnchor(hb2, 5.0);
+
+        AnchorPane.setBottomAnchor(hb1, 8.0);
+        AnchorPane.setRightAnchor(hb1, 5.0);
+
 
         StackPane layout = new StackPane();
+        layout.getChildren().add(anchorPane);
 
         Scene scene = new Scene(layout, 400, 400);
         primaryStage.setScene(scene);
