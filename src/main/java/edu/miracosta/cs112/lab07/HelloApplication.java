@@ -22,6 +22,7 @@ public class HelloApplication extends Application implements EventHandler<Action
         launch(args); //method from Application class, must be called to setup javafx application
     }
 
+    private int count = 0;
     Button buttonSave;
     Button buttonCount;
     Label label1;
@@ -97,12 +98,13 @@ public class HelloApplication extends Application implements EventHandler<Action
         if(actionEvent.getSource() == buttonCount) {
             Button button = (Button) actionEvent.getSource();
             if("Count".equals(button.getText())) {
-                label2.setText("" + count());
+                count();
+                label1.setText("Count: " + count);
             }
         }
+    }
 
-        public int count() {
-            for(int i = 0; i < 0)
-        }
+    private void count() {
+        count++;
     }
 }
