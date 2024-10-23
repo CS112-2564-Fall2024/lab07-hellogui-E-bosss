@@ -13,7 +13,7 @@ import javafx.scene.control.Button;     //class for button component
 import javafx.event.EventHandler;       //interface for handling events
 import javafx.event.ActionEvent;        //class for type of event for action (like button or key pressed)
 
-public class HelloApplication extends Application { //inheriting core functionality + this class will handle events
+public class HelloApplication extends Application implements EventHandler<ActionEvent> { //inheriting core functionality + this class will handle events
     /*** GUI COMPONENTS ***/
     // TODO: follow step 25 in README.md to create reference variables
 
@@ -22,19 +22,29 @@ public class HelloApplication extends Application { //inheriting core functional
         launch(args); //method from Application class, must be called to setup javafx application
     }
 
-    public void start(Stage primaryStage) {
+    Button buttonSave;
+    Button buttonCount;
+    Label label1;
+    Label label2;
+
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Hello GUI: Ethan Senger");
 
-        Label label1 = new Label();
+        label1 = new Label();
         label1.setText("Hello GUI World");
+        label1.setPadding(new Insets(0, 10, 10, 10));
 
-        Label label2 = new Label();
-        label2.setText("Thanks for visiting");
+        label2 = new Label();
+        label2.setText("Thanks For Visiting");
+        label2.setPadding(new Insets(0, 10, 10, 10));
 
         AnchorPane anchorPane = new AnchorPane();
 
-        Button buttonSave = new Button("Save");
-        Button buttonCancel = new Button("Cancel");
+        buttonSave = new Button("Save");
+        buttonSave.setOnAction(this::handle);
+
+        buttonCount = new Button("Count");
+        buttonCount.setOnAction(this::handle);
 
         HBox hb1 = new HBox();
         hb1.setPadding(new Insets(0, 10, 10, 10));
@@ -44,15 +54,15 @@ public class HelloApplication extends Application { //inheriting core functional
         HBox hb2 = new HBox();
         hb2.setPadding(new Insets(0, 10, 10, 10));
         hb2.setSpacing(10);
-        hb2.getChildren().add(buttonCancel);
+        hb2.getChildren().add(buttonCount);
 
-        anchorPane.getChildren().addAll(label1, label2, hb1,hb2);
+        anchorPane.getChildren().addAll(label1, label2, hb1, hb2);
 
-        AnchorPane.setTopAnchor(label1, 0.0);
-        AnchorPane.setLeftAnchor(label1, 0.0);
+        AnchorPane.setTopAnchor(label1, 8.0);
+        AnchorPane.setLeftAnchor(label1, 5.0);
 
-        AnchorPane.setTopAnchor(label2, 0.0);
-        AnchorPane.setRightAnchor(label2, 0.0);
+        AnchorPane.setTopAnchor(label2, 8.0);
+        AnchorPane.setRightAnchor(label2, 5.0);
 
         AnchorPane.setBottomAnchor(hb2, 8.0);
         AnchorPane.setLeftAnchor(hb2, 5.0);
@@ -75,4 +85,24 @@ public class HelloApplication extends Application { //inheriting core functional
     // TODO: follow steps 10-21 in README.md to add objects to your layout (inside start)
 
     // TODO: follow steps 22-34 in README.md to create an event handler
+    public void handle(ActionEvent actionEvent) {
+
+        if (actionEvent.getSource() == buttonSave) {
+            Button button = (Button) actionEvent.getSource();
+            if("Save".equals(button.getText())) {
+                label2.setText("Thanks For Saving!");
+            }
+        }
+
+        if(actionEvent.getSource() == buttonCount) {
+            Button button = (Button) actionEvent.getSource();
+            if("Count".equals(button.getText())) {
+                label2.setText("" + count());
+            }
+        }
+
+        public int count() {
+            for(int i = 0; i < 0)
+        }
+    }
 }
